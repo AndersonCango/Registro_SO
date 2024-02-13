@@ -1,0 +1,74 @@
+{% extends './base.html' %}
+
+{% block title %}Login - Asistance{% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth_login.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div>
+  <main class="text-center form-signin w-100 m-auto">
+    <form
+    id="formAuthentication"
+    class="mb-3"
+    action=""
+    method="POST"
+    autocomplete="off">
+      <img class="mb-4" src="{{ url_for('static', filename ='img/logo.png') }}" alt="" width="140" height="140">
+      <h1 class="h3 mb-3 fw-normal">Log in</h1>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <br />
+      {% for message in messages %}
+      <div class="alert" id="alert" class="custom-alert">
+          <strong>{{ message }}</strong>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      <div class="form-floating">
+        <input type="email" name="email_user" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Username</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" name="pass_user" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+
+      <div class="text-end" style="margin-right: 10px;">
+        <a href="#" class="form-check-label" for="flexCheckDefault">
+          Forgot password?
+        </a>
+      </div>
+
+      <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+
+      <div class="py-3">
+        <label>Not a member?</label>
+        <a href="{{ url_for('register') }}" class="form-check-label" for="flexCheckDefault">Register</a>
+      </div>
+
+      <p class="mt-5 mb-3 text-body-secondary">&copy; 2024</p>
+    </form>
+  </main>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Muestra el mensaje y lo oculta después de 3 segundos
+    var customAlert = document.getElementById('alert');
+    customAlert.style.display = 'block'; // Muestra el mensaje
+    setTimeout(function() {
+      customAlert.style.display = 'none'; // Oculta el mensaje después de 3 segundos
+    }, 1500);
+  });
+</script>
+
+  
+
+{% endblock %}

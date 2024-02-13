@@ -1,0 +1,36 @@
+{% extends './base.html' %}
+
+{% block title %}Telcomep - Home{% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  <header class="fixed-top d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom" style="margin-left: 40px; margin-right: 40px;">
+    <div class="col-md-3 mb-2 mb-md-0 d-flex align-items-center">
+      <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+        <img class="bi align-self-center" width="70" role="img" aria-label="TelcomEp" src="{{ url_for('static', filename='img/logo.png') }}" />
+      </a>
+      <span class="text-start-ms2">TelcomEp</span>
+    </div>
+
+    <div class="bt text-end">
+      <a href="{{ url_for('login') }}" class="btn btn-outline-success me-2 mt-1">Login</a>
+      <a href="{{ url_for('register') }}" class="btn btn-success mt-1">Sign up</a>
+    </div>
+  </header>
+</div>
+
+<div class="container">
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"></li>
+    </ul>
+    <p class="text-center text-body-secondary">&copy; 2024 Company, TelcomEp</p>
+  </footer>
+</div>
+
+{% endblock %}bard
