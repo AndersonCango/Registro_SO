@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333; /* Color de fondo de la barra de navegación */
+    color: white; /* Color del texto de la barra de navegación */
+    padding: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 150px; /* Ancho de la barra lateral */
+    height: 100%;
+    background-color: #f4f4f4; /* Color de fondo de la barra lateral */
+    padding: 20px;
+}
+
+#login-btn,
+#signup-btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.main-content {
+    margin-left: 180px; /* Ancho de la barra lateral + margen */
+    padding: 20px;
+}

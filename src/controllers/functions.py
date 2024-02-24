@@ -3,39 +3,46 @@ from flask import session
 def gen_username_em(db, names, lastnames):
     try:
         cursor = db.cursor()
-        sql = f"SELECT email_em FROM employee"
+        sql = f"SELECT username_employee FROM employee"
         cursor.execute(sql)
         usernames = cursor.fetchall()
 
-        first_name = names.split[0].lower()
-        first_lastname = lastnames.split[0].lower()
+        first_na = names.split()
+        first_last = lastnames.split()
+
+        first_name = first_na[0]
+        first_lastname = first_last[0]
 
         username_base = f"{first_name}.{first_lastname}"
 
         usernames_clean = [row[0] for row in usernames if row[0] is not None]
-        i = 0
-        for username in usernames_clean:
-            if username == f"{username_base}@telcomep.ec":
-                while f"{username_base}{i:02}" in usernames_clean:
-                    i += 1
-            pass
-        return f"{username_base}{i:02}@telcomep.ec"
+
+        if username_base not in usernames_clean:
+            return f"{username_base}@telcomep.ec"
+        else:
+            i = 0
+            while f"{username_base}{i:02}" in usernames_clean:
+                i += 1
+            return f"{username_base}{i:02}@telcomep.ec"
 
     except Exception as e:
-        raise print(e)
+        print(e)
 
-def dataLoginSesion():
+def dataLoginSession():
     inforLogin = {
-        'dni_em' : session['dni_em'],
-        'name_em' : session['name_em'],
-        'lastna_em' : session['lastna_em'],
+        'dni_employee' : session['dni_employee'],
+        'name_employee' : session['name_employee'],
+        'lastna_employee' : session['lastna_employee'],
+        'email_employee' : session['email_employee'],
+        'username_employee' : session['username_employee'],
+        'cellphone_employee' : session['cellphone_employee'],
     }
     return inforLogin
 
 def info_perfil_session(db):
     try:
         cursor = db.cursor()
-        sql = f"SELECT dni_em, name_em, lastna_em, email_em, cellphone FROM employee WHERE dni_em = {session['dni_em']}"
+        sql = f"SELECT dni_employee, name_employee, lastna_employee, email_employee, username_employee, cellphone_employee FROM employee WHERE dni_employee = '{session['dni_employee']}'"
         cursor.execute(sql)
         info_perfil = cursor.fetchall()
         return info_perfil

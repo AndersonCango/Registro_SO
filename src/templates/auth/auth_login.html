@@ -32,16 +32,16 @@
       {% endwith %}
 
       <div class="form-floating">
-        <input type="email" name="email_user" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input type="email" name="email_user" class="form-control" id="floatingInput" placeholder="name@example.com" required>
         <label for="floatingInput">Username</label>
       </div>
       <div class="form-floating">
-        <input type="password" name="pass_user" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" name="pass_user" class="form-control" id="floatingPassword" placeholder="Password" required>
         <label for="floatingPassword">Password</label>
       </div>
 
       <div class="text-end" style="margin-right: 10px;">
-        <a href="#" class="form-check-label" for="flexCheckDefault">
+        <a href="{{ url_for('forgot_password') }}" class="form-check-label" for="flexCheckDefault">
           Forgot password?
         </a>
       </div>

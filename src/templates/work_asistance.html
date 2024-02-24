@@ -1,20 +1,185 @@
-{% extends './base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/png">
+        <title>Asistance</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/work_asistance.css') }}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">    
+        <!-- Incluye la API de JavaScript de Google Maps con tu clave de API -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOW7J5mOn1XP97wzqoHYJjYfUQ_9Dvwus"></script>
+        <style>
+            #map {
+                height: 400px;
+                width: 100%;
+            }
+        </style>
+    </head>
 
-{% block title %}Asistance{% endblock %}
+    <body class="vh-100 overflow-hidden">
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+            <div class="container">
+                <!--Logo-->
+                <a class="d-inline-flex link-body-emphasis text-decoration-none">
+                    <img class="bi align-self-center" width="70" role="img" aria-label="TelcomEp" src="{{ url_for('static', filename='img/logo.png') }}" />
+                </a>
+                <a class="navbar-brand fs-5 mx-3" style="color: black !important;">TelcomEp</a>
+                <!--Toggle Btn-->
+                <button class="navbar-toggler shadow-none border-0"  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!--SideBar-->
+                <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <!--Sidebar Header-->
+                    <div class="offcanvas-header border-bottom">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: black !important;">TelcomEp</h5>
+                        <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <!--Sidebar Body-->
+                    <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
+                        <ul class="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3">
+                            <li class="nav-item mx-2">
+                                <a class="nav-link active" aria-current="page"></a>
+                            </li>
+                        </ul>
+                        <!--Log out-->
+                        <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
+                            <span class="text-start-ms2 me-4 mt-2"> {{ info_perfil_session[0]['name_employee'] }} {{ info_perfil_session[0]['lastna_employee'] }} </span>
+                            <a href="{{ url_for('logout') }}" class="btn btn-success mt-1">Log out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
 
-{% block customCSS %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/work_asistence.css') }}">
-{% endblock %}
+    <!-- Container for costumers list -->
+    <div class="container"> 
+        <div class="text-center mt-5">
+            <h4>Clientes</h4>
+        </div>
+        <!-- Tabla de clientes -->
+        <table class="table table-borderless text-center">
+            <thead>
+                <tr>
+                    <th>Cedula</th>
+                    <th>Nombre</th>
+                    <th>Servicio</th>
+                    <th>Direccion</th>
+                    <th>Fecha y hora</th>
+                </tr>
+            </thead>
+            {% for ins_tuple in installations %}
+                {% for ins in ins_tuple %}
+                <tr>
+                    <td>{{ ins.dni_costumer }}</td>
+                    <td>{{ ins.name_costumer }}</td>
+                    <td>{{ ins.service_name }}</td>
+                    <td>{{ ins.adress_costumer }}</td>
+                    <td>{{ ins.date_expected_install }}</td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+        <!-- Botón de selección -->
+        <div class="mb-3 col-md-2 mx-auto">
+            <select class="form-select" id="dni_Costumer_Select">
+                <option selected>Selecciona un cliente...</option>
+                {% for ins in installations %}
+                <option value="{{ ins.dni_costumer }}">{{ ins.dni_costumer }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
 
-{% block body %}
+    <div class="container mt-3">
+        <div class="row">
+            <!-- Contenedor del mapa en el lado izquierdo -->
+            <div class="col-md-7">
+                <div id="map" class=""></div>
+            </div>
+            <!-- Datos y formulario en el lado derecho -->
+            <div class="col-md-5 text-center mt-5">
+                <div>
+                    <!-- Elemento para mostrar las coordenadas en tiempo real -->
+                    <p>Latitud: <span id="latitud"></span></p>
+                    <p>Altitud: <span id="longitud"></span></p>
+                </div>
+                <div>
+                    <form>
+                        <label for="service">Services: </label>
+                        <select id="service" name="service">
+                            {% for service_tuple in services %}
+                                {% for service in service_tuple %}
+                                    <option value="{{ service }}">{{ service }}</option>
+                                {% endfor %}
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="container col-md-1 text-center mt-3">
+        <button class="btn btn-outline-success w-50 py-2" type="submit">Save</button>
+    </div>
 
-<div>
-  <a href="{{ url_for('logout') }}" class="btn btn-outline-success mb-5">Log out</a>
-</div>
-<div>
-  <h1>Bienvenido {{ info_perfil_session[0]['name_em'] }} {{ info_perfil_session[0]['lastna_em'] }} </h1>
-</div>
+    <script>
+        // Inicializar el mapa
+        function initMap() {
+            // Obtener la ubicación actual del usuario
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var centro = { lat: position.coords.latitude, lng: position.coords.longitude };
 
+                // Crear un nuevo mapa en el contenedor con id "map"
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: centro,
+                    zoom: 15  // Nivel de zoom inicial
+                });
 
-{% endblock %}
+                // Crear un marcador en la ubicación actual del usuario
+                var marker = new google.maps.Marker({
+                    position: centro,
+                    map: map
+                });
+
+                // Mostrar las coordenadas iniciales
+                mostrarCoordenadas(position.coords);
+
+                // Función para mostrar las coordenadas en las etiquetas
+                function mostrarCoordenadas(coords) {
+                    document.getElementById('latitud').innerHTML = coords.latitude;
+                    document.getElementById('longitud').innerHTML = coords.longitude;
+                }
+
+                // Función para actualizar automáticamente el marcador a la ubicación actual
+                function actualizarUbicacion() {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var nuevaUbicacion = { lat: position.coords.latitude, lng: position.coords.longitude };
+                        marker.setPosition(nuevaUbicacion);
+                        mostrarCoordenadas(position.coords);
+                    });
+                }
+
+                // Actualizar la ubicación automáticamente cada 5 segundos (puedes ajustar el intervalo)
+                setInterval(actualizarUbicacion, 5000);
+            }, function (error) {
+                // Manejar errores de geolocalización
+                console.error('Error al obtener la ubicación: ', error);
+            });
+        }
+
+        // Cargar el mapa al cargar la página
+        google.maps.event.addDomListener(window, 'load', initMap);
+    </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+    </body>
+</html>

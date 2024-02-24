@@ -1,36 +1,89 @@
-{% extends './base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible"
+        content="IE=edge" />
+        <meta name = "viewport"
+        content="width=device-width, initial-scale=1.0" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+        <title>TelcomEp</title>
+    </head>
 
-{% block title %}Telcomep - Home{% endblock %}
-
-{% block customCSS %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-{% endblock %}
-
-{% block body %}
-
-<div class="container">
-  <header class="fixed-top d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom" style="margin-left: 40px; margin-right: 40px;">
-    <div class="col-md-3 mb-2 mb-md-0 d-flex align-items-center">
-      <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-        <img class="bi align-self-center" width="70" role="img" aria-label="TelcomEp" src="{{ url_for('static', filename='img/logo.png') }}" />
-      </a>
-      <span class="text-start-ms2">TelcomEp</span>
-    </div>
-
-    <div class="bt text-end">
-      <a href="{{ url_for('login') }}" class="btn btn-outline-success me-2 mt-1">Login</a>
-      <a href="{{ url_for('register') }}" class="btn btn-success mt-1">Sign up</a>
-    </div>
-  </header>
-</div>
-
-<div class="container">
-  <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"></li>
-    </ul>
-    <p class="text-center text-body-secondary">&copy; 2024 Company, TelcomEp</p>
-  </footer>
-</div>
-
-{% endblock %}bard
+    <body class="vh-100 overflow-hidden">
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+            <div class="container">
+                <!--Logo-->
+              <a class="d-inline-flex link-body-emphasis text-decoration-none">
+                <img class="bi align-self-center" width="70" role="img" aria-label="TelcomEp" src="{{ url_for('static', filename='img/logo.png') }}" />
+              </a>
+              <a class="navbar-brand fs-5 mx-3">TelcomEp</a>
+              <!--Toggle Btn-->
+              <button 
+              class="navbar-toggler shadow-none border-0" 
+              type="button" 
+              data-bs-toggle="offcanvas" 
+              data-bs-target="#offcanvasNavbar" 
+              aria-controls="offcanvasNavbar" 
+              aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <!--SideBar-->
+              <div class="sidebar offcanvas offcanvas-start" 
+              tabindex="-1" 
+              id="offcanvasNavbar" 
+              aria-labelledby="offcanvasNavbarLabel"
+              >
+              <!--Sidebar Header-->
+                <div class="offcanvas-header text-white border-bottom">
+                  <h5 class="offcanvas-title" 
+                  id="offcanvasNavbarLabel">TelcomEp</h5>
+                  <button 
+                  type="button" 
+                  class="btn-close btn-close-white shadow-none" 
+                  data-bs-dismiss="offcanvas" 
+                  aria-label="Close"
+                  ></button>
+                </div>
+                <!--Sidebar Body-->
+                <div class="offcanvas-body d-flex flex-column 
+                flex-lg-row p-4 p-lg-0">
+                  <ul class="navbar-nav justify-content-center 
+                  align-items-center fs-5 flex-grow-1 pe-3">
+                    <li class="nav-item mx-2">
+                      <a class="nav-link active" aria-current="page" 
+                      href="#"></a>
+                  </ul>
+                  <!--Login / Sing up-->
+                  <div class="d-flex flex-column flex-lg-row 
+                  justify-content-center
+                  align-items-center gap-3">
+                    <a href="{{ url_for('login') }}" class="text-white text-decoration-none px-3 py-1 rounded-4">Login</a>
+                    <a href="{{ url_for('register') }}" class="text-white text-decoration-none px-3 py-1 rounded-4" 
+                    style="background-color: #2e8b57">Sign Up</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+          <footer class="fixed-bottom py-3" style="background-color: transparent;">
+            <div class="container">
+                <p class="text-center text-body-secondary text-white" style="color: white !important;">&copy; 2024 Company, TelcomEp</p>
+            </div>
+          </footer>
+          <main class="container">
+            <section class="w-100 vh-100 d-flex flex-column justify-content-center align-items-center text-white fs-1">
+                <h1 class="animated-text animate__animated animate__bounce" style="font-size: 1em">
+                    Conéctate al mundo con la mejor velocidad y calidad de internet
+                </h1>
+                <h1 class="mt-3 animated-text animate__animated animate__rubberBand" style="font-size: 0.7em">
+                    No te quedes atrás en la era digital
+                </h1>
+            </section>
+        </main> 
+    </body>
+</html>
