@@ -115,7 +115,7 @@
 														<tr>
 															<td class="pad">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:28px;line-height:120%;text-align:center;mso-line-height-alt:33.6px;">
-																	<p style="margin: 0; word-break: break-word;"><span><strong>THANK YOU FOR YOUR ORDER</strong></span></p>
+																	<p style="margin: 0; word-break: break-word;"><span><strong>GRACIAS POR TU ORDEN</strong></span></p>
 																</div>
 															</td>
 														</tr>
@@ -125,8 +125,8 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><span>Hi Your Name,<br><br></span></p>
-																	<p style="margin: 0; word-break: break-word;"><span>Thanks for your order - your confirmation number is 56842375539.</span><br><span>Full details of your order can be found below.</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span>Hola {{ facture[0] }},<br><br></span></p>
+																	<p style="margin: 0; word-break: break-word;"><span>Gracias por su pedido, su número de confirmación es {{ facture[1] }}.</span><br><span>Los detalles completos de su pedido se pueden encontrar a continuación</span></p>
 																</div>
 															</td>
 														</tr>
@@ -152,7 +152,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:26px;line-height:120%;text-align:left;mso-line-height-alt:31.2px;">
-																	<p style="margin: 0; word-break: break-word;"><span><strong>DETAILS</strong></span></p>
+																	<p style="margin: 0; word-break: break-word;"><span><strong>DETALLES</strong></span></p>
 																</div>
 															</td>
 														</tr>
@@ -184,7 +184,7 @@
 																			<table class="icons-inner" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;" cellpadding="0" cellspacing="0" role="presentation"><!--<![endif]-->
 																				<tr>
 																					<td style="vertical-align: middle; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 25px; padding-right: 25px;"><img class="icon" alt="Calendar Icon" src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/3296/MCC_confirmation_icon_calendar.png" height="32" width="32" align="center" style="display: block; height: auto; margin: 0 auto; border: 0;"></td>
-																					<td style="font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size: 16px; font-weight: undefined; color: #000000; vertical-align: middle; letter-spacing: undefined; text-align: left;">26/09/2021 18:30:00 - 21:30</td>
+																					<td style="font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size: 16px; font-weight: undefined; color: #000000; vertical-align: middle; letter-spacing: undefined; text-align: left;">{{ facture[2].strftime('%Y-%m-%d %H:%M:%S') }}</td>
 																				</tr>
 																			</table>
 																		</td>
@@ -203,7 +203,7 @@
 																			<table class="icons-inner" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;" cellpadding="0" cellspacing="0" role="presentation"><!--<![endif]-->
 																				<tr>
 																					<td style="vertical-align: middle; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 25px; padding-right: 25px;"><img class="icon" alt="Location Icon" src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/3296/MCC_confirmation_icon_location.png" height="32" width="32" align="center" style="display: block; height: auto; margin: 0 auto; border: 0;"></td>
-																					<td style="font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size: 16px; font-weight: undefined; color: #000000; vertical-align: middle; letter-spacing: undefined; text-align: left;">The O2, London, SE10 0DX</td>
+																					<td style="font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size: 16px; font-weight: undefined; color: #000000; vertical-align: middle; letter-spacing: undefined; text-align: left;">{{ facture[3] }}</td>
 																				</tr>
 																			</table>
 																		</td>
@@ -262,7 +262,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><span>Item</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span>Servicio</span></p>
 																</div>
 															</td>
 														</tr>
@@ -271,7 +271,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><strong><span>Regular</span></strong></p>
+																	<p style="margin: 0; word-break: break-word;"><strong><span>{{ facture[4] }}</span></strong></p>
 																</div>
 															</td>
 														</tr>
@@ -282,7 +282,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><span>Location</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span>Direccion</span></p>
 																</div>
 															</td>
 														</tr>
@@ -291,7 +291,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><strong><span>107 | 205, 206</span></strong></p>
+																	<p style="margin: 0; word-break: break-word;"><strong><span>{{ facture[5] }}/{{ facture[6] }}</span></strong></p>
 																</div>
 															</td>
 														</tr>
@@ -302,7 +302,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><span>Qty</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span>Cantidad</span></p>
 																</div>
 															</td>
 														</tr>
@@ -311,7 +311,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><strong><span>2</span></strong></p>
+																	<p style="margin: 0; word-break: break-word;"><strong><span>1</span></strong></p>
 																</div>
 															</td>
 														</tr>
@@ -322,7 +322,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><span>Price/ea.</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span>Precio</span></p>
 																</div>
 															</td>
 														</tr>
@@ -331,7 +331,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><strong><span>£45.00</span></strong></p>
+																	<p style="margin: 0; word-break: break-word;"><strong><span>{{ facture[7] }}</span></strong></p>
 																</div>
 															</td>
 														</tr>
@@ -399,7 +399,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><strong><span>£90.00</span></strong></p>
+																	<p style="margin: 0; word-break: break-word;"><strong><span>{{ facture[7] }}</span></strong></p>
 																</div>
 															</td>
 														</tr>
@@ -441,7 +441,7 @@
 														<tr>
 															<td class="pad" style="padding-left:25px;padding-right:25px;padding-top:5px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:23px;line-height:150%;text-align:left;mso-line-height-alt:34.5px;">
-																	<p style="margin: 0; word-break: break-word;"><strong><span>SERVICE INFORMATION<br></span></strong></p>
+																	<p style="margin: 0; word-break: break-word;"><strong><span>INFORMACIÓN DEL SERVICIO<br></span></strong></p>
 																</div>
 															</td>
 														</tr>
@@ -458,7 +458,7 @@
 																			<table class="icons-inner" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;" cellpadding="0" cellspacing="0" role="presentation"><!--<![endif]-->
 																				<tr>
 																					<td style="vertical-align: middle; text-align: center; padding-top: 0px; padding-bottom: 0px; padding-left: 25px; padding-right: 25px;"><img class="icon" alt="App Icon" src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/3296/MCC_confirmation_icon_logo.png" height="32" width="32" align="center" style="display: block; height: auto; margin: 0 auto; border: 0;"></td>
-																					<td style="font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size: 16px; font-weight: undefined; color: #000000; vertical-align: middle; letter-spacing: undefined; text-align: left;">Service</td>
+																					<td style="font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size: 16px; font-weight: undefined; color: #000000; vertical-align: middle; letter-spacing: undefined; text-align: left;">Servicio</td>
 																				</tr>
 																			</table>
 																		</td>
@@ -488,7 +488,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><span><span><strong>Mobile ID and Official Resale:</strong><br>To find out more about this simple, secure and fan friendly delivery method, please visit https://www.example.com/. To use this method of delivery, you will need to download Venue app or Your Name app to your phone. In line with <br>the wishes of the event organisers, the tickets will be released to Your Name Accounts within 14 days of the event. You will receive an email confirming once the tickets have been released to your account. If you have bought tickets for this show, then Official Resale is the only legitimate place to re-sell your tickets.<br><br><strong>Please note:</strong><br>If you purchase resale tickets for this show through any website other than the venue website or example.com, your tickets may not be valid and access to the venue could be refused.</span></span></p>
+																	<p style="margin: 0; word-break: break-word;"><span><span><br>{{ facture[8] }}</span></span></p>
 																</div>
 															</td>
 														</tr>
@@ -530,7 +530,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:30px;line-height:120%;text-align:center;mso-line-height-alt:36px;">
-																	<p style="margin: 0; word-break: break-word;"><span><strong>ORDER DETAILS</strong></span></p>
+																	<p style="margin: 0; word-break: break-word;"><span><strong>DETALLES DE LA ORDEN</strong></span></p>
 																</div>
 															</td>
 														</tr>
@@ -572,7 +572,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><span>Order Number</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span>Numero de orden</span></p>
 																</div>
 															</td>
 														</tr>
@@ -581,7 +581,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:15px;padding-left:25px;padding-right:25px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><strong><span>56842375539</span></strong></p>
+																	<p style="margin: 0; word-break: break-word;"><strong><span>{{ facture[9] }}</span></strong></p>
 																</div>
 															</td>
 														</tr>
@@ -592,7 +592,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><span>Order Date</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span>Fecha de la orden</span></p>
 																</div>
 															</td>
 														</tr>
@@ -601,7 +601,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:15px;padding-left:25px;padding-right:25px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><strong><span>13/11/2020</span></strong></p>
+																	<p style="margin: 0; word-break: break-word;"><strong><span>{{ facture[10].strftime('%Y-%m-%d %H:%M:%S') }}</span></strong></p>
 																</div>
 															</td>
 														</tr>
@@ -612,7 +612,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><span>&nbsp;Name</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span>Empleado a disposicion</span></p>
 																</div>
 															</td>
 														</tr>
@@ -621,7 +621,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:15px;padding-left:25px;padding-right:25px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><strong><span>Your Name</span></strong></p>
+																	<p style="margin: 0; word-break: break-word;"><strong><span>{{ facture[11] }}</span></strong></p>
 																</div>
 															</td>
 														</tr>
@@ -632,7 +632,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><span>Customer ID</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span>Su credencial</span></p>
 																</div>
 															</td>
 														</tr>
@@ -641,7 +641,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:15px;padding-left:25px;padding-right:25px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><strong><span>5625569</span></strong></p>
+																	<p style="margin: 0; word-break: break-word;"><strong><span>{{ facture[12] }}</span></strong></p>
 																</div>
 															</td>
 														</tr>
@@ -712,7 +712,7 @@
 														<tr>
 															<td class="pad">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:30px;line-height:120%;text-align:left;mso-line-height-alt:36px;">
-																	<p style="margin: 0; word-break: break-word;"><span><strong>ADDITIONAL INFORMATION</strong></span></p>
+																	<p style="margin: 0; word-break: break-word;"><span><strong>OBSERVACIONES</strong></span></p>
 																</div>
 															</td>
 														</tr>
@@ -747,11 +747,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><span><strong>Car Parking</strong> – Pre-book now to guarantee a parking space just </span></p>
-																	<p style="margin: 0; word-break: break-word;"><span>a five-minute walk from the venue.<br><br></span></p>
-																	<p style="margin: 0; word-break: break-word;"><span><strong>Valet Parking</strong> – Now available to pre-book offering you the opportunity </span></p>
-																	<p style="margin: 0; word-break: break-word;"><span>to park in an exclusive area at the VIP entrance of the venue.<br><br></span></p>
-																	<p style="margin: 0; word-break: break-word;"><span><strong>Busses</strong> – Pre-book express services on www.example.com<br><br><strong>Underground</strong> – follow the guide on the venue website</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span>{{facture[13]}}<br><br></span></p>
 																</div>
 															</td>
 														</tr>
@@ -761,7 +757,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:5px;padding-left:25px;padding-right:25px;padding-top:5px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><strong><span>Customer Support<br></span></strong></p>
+																	<p style="margin: 0; word-break: break-word;"><strong><span>Atención al cliente<br></span></strong></p>
 																</div>
 															</td>
 														</tr>
@@ -770,7 +766,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:25px;padding-top:10px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;line-height:150%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><span>If you have not received your service, please contact us.</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span>Si no ha recibido su servicio, por favor contáctenos.</span></p>
 																</div>
 															</td>
 														</tr>
@@ -805,8 +801,8 @@
 															<td class="pad" style="padding-left:30px;padding-right:30px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:14px;line-height:120%;text-align:center;mso-line-height-alt:16.8px;">
 																	<p style="margin: 0;">&nbsp;</p>
-																	<p style="margin: 0;">Connect to the world with the best Internet speed and quality.</p>
-																	<p style="margin: 0;">Don't be left behind in the figital age.<span></span></p>
+																	<p style="margin: 0;">Conéctate al mundo con la mejor velocidad y calidad de Internet.</p>
+																	<p style="margin: 0;">No te quedes atrás en la era digital.<span></span></p>
 																</div>
 															</td>
 														</tr>
@@ -816,7 +812,7 @@
 														<tr>
 															<td class="pad" style="padding-left:30px;padding-right:30px;">
 																<div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:14px;line-height:120%;text-align:center;mso-line-height-alt:16.8px;">
-																	<p style="margin: 0;">2024 Company, TelcomEp</p>
+																	<p style="margin: 0;margin-bottom: 50px;">2024 Empresa, TelcomEp</p>
 																</div>
 															</td>
 														</tr>

@@ -8,3 +8,17 @@
 body {
     background-color: #f5f5f5;
 }
+
+.offcanvas {
+    max-width: 80%; /* Ajusta el ancho según sea necesario */
+    overflow-y: auto;
+}
+
+@media (max-width: 770px) {
+    .table td, .table th {
+        font-size: 0.7rem; /* Puedes ajustar el tamaño de la fuente según tus necesidades */
+    }
+    .form-select .form-control {
+        font-size: 0.7rem;
+    }
+}

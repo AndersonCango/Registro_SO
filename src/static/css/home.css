@@ -1,5 +1,4 @@
 body{
-    background: url('../img/servicio.jpg') rgba(0, 0, 0, 0.5);
     background-blend-mode: multiply;
     background-position: center;
     background-size: cover;
@@ -11,9 +10,8 @@ body{
         background-color: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(10px);
     }
-
 }
 
 .animated-text {
-    animation-duration: 4s; /* Duración de la animación */
+    animation-duration: 4s;
 }

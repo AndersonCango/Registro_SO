@@ -17,7 +17,7 @@
     method="POST"
     autocomplete="off">
       <img class="mb-4" src="{{ url_for('static', filename ='img/logo.png') }}" alt="" width="140" height="140">
-      <h1 class="h3 mb-3 fw-normal">Log in</h1>
+      <h1 class="h3 mb-3 fw-normal">Iniciar Sesión</h1>
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
       {% with messages = get_flashed_messages() %}
@@ -33,27 +33,25 @@
 
       <div class="form-floating">
         <input type="email" name="email_user" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-        <label for="floatingInput">Username</label>
+        <label for="floatingInput">Usuario</label>
       </div>
-      <div class="form-floating">
+      <div class="form-floating mt-2">
         <input type="password" name="pass_user" class="form-control" id="floatingPassword" placeholder="Password" required>
-        <label for="floatingPassword">Password</label>
+        <label for="floatingPassword">Contraseña</label>
       </div>
 
       <div class="text-end" style="margin-right: 10px;">
         <a href="{{ url_for('forgot_password') }}" class="form-check-label" for="flexCheckDefault">
-          Forgot password?
+          ¿Olvidaste tu contraseña?
         </a>
       </div>
 
-      <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+      <button class="btn btn-primary w-100 py-2" type="submit">Entrar</button>
 
       <div class="py-3">
-        <label>Not a member?</label>
-        <a href="{{ url_for('register') }}" class="form-check-label" for="flexCheckDefault">Register</a>
+        <label>No es un miembro?</label>
+        <a href="{{ url_for('register') }}" class="form-check-label" for="flexCheckDefault">Registrese</a>
       </div>
-
-      <p class="mt-5 mb-3 text-body-secondary">&copy; 2024</p>
     </form>
   </main>
 </div>
@@ -65,7 +63,7 @@
     customAlert.style.display = 'block'; // Muestra el mensaje
     setTimeout(function() {
       customAlert.style.display = 'none'; // Oculta el mensaje después de 3 segundos
-    }, 1500);
+    }, 2500);
   });
 </script>
 

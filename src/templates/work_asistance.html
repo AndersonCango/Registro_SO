@@ -13,13 +13,13 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOW7J5mOn1XP97wzqoHYJjYfUQ_9Dvwus"></script>
         <style>
             #map {
-                height: 400px;
+                height: 450px;
                 width: 100%;
             }
         </style>
     </head>
 
-    <body class="vh-100 overflow-hidden">
+    <body class="vh-100">
         <!--Navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
             <div class="container">
@@ -49,134 +49,160 @@
                         <!--Log out-->
                         <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
                             <span class="text-start-ms2 me-4 mt-2"> {{ info_perfil_session[0]['name_employee'] }} {{ info_perfil_session[0]['lastna_employee'] }} </span>
-                            <a href="{{ url_for('logout') }}" class="btn btn-success mt-1">Log out</a>
+                            <a href="{{ url_for('logout') }}" class="btn btn-success mt-1 rounded-4">Cerrar sesión</a>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
-
-    <!-- Container for costumers list -->
-    <div class="container"> 
-        <div class="text-center mt-5">
-            <h4>Clientes</h4>
+        <ul class="container border-bottom"></ul>
+        <!-- Container for costumers list -->
+        <div class="container"> 
+            <div class="text-center mt-3 mb-4">
+                <h5>Instalaciones pendientes</h5>
+            </div class="table-responsive">
+            <!-- Tabla de clientes -->
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>Orden</th>
+                        <th>Cedula</th>
+                        <th>Nombre</th>
+                        <th>Servicio</th>
+                        <th>Dirección</th>
+                        <th>Horario</th>
+                    </tr>
+                </thead>
+                    {% for instalation in installations %}
+                    <tr>
+                        <td>{{ instalation[0] }}</td>
+                        <td>{{ instalation[1] }}</td>
+                        <td>{{ instalation[2] }}</td>
+                        <td>{{ instalation[3] }}</td>
+                        <td>{{ instalation[4] }}</td>
+                        <td>{{ instalation[5].strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    </tr>
+                    {% endfor %}
+            </table>
         </div>
-        <!-- Tabla de clientes -->
-        <table class="table table-borderless text-center">
-            <thead>
-                <tr>
-                    <th>Cedula</th>
-                    <th>Nombre</th>
-                    <th>Servicio</th>
-                    <th>Direccion</th>
-                    <th>Fecha y hora</th>
-                </tr>
-            </thead>
-            {% for ins_tuple in installations %}
-                {% for ins in ins_tuple %}
-                <tr>
-                    <td>{{ ins.dni_costumer }}</td>
-                    <td>{{ ins.name_costumer }}</td>
-                    <td>{{ ins.service_name }}</td>
-                    <td>{{ ins.adress_costumer }}</td>
-                    <td>{{ ins.date_expected_install }}</td>
-                </tr>
-                {% endfor %}
-            {% endfor %}
-        </table>
-        <!-- Botón de selección -->
-        <div class="mb-3 col-md-2 mx-auto">
-            <select class="form-select" id="dni_Costumer_Select">
-                <option selected>Selecciona un cliente...</option>
-                {% for ins in installations %}
-                <option value="{{ ins.dni_costumer }}">{{ ins.dni_costumer }}</option>
-                {% endfor %}
-            </select>
-        </div>
-    </div>
-
-    <div class="container mt-3">
-        <div class="row">
-            <!-- Contenedor del mapa en el lado izquierdo -->
-            <div class="col-md-7">
-                <div id="map" class=""></div>
-            </div>
-            <!-- Datos y formulario en el lado derecho -->
-            <div class="col-md-5 text-center mt-5">
-                <div>
-                    <!-- Elemento para mostrar las coordenadas en tiempo real -->
-                    <p>Latitud: <span id="latitud"></span></p>
-                    <p>Altitud: <span id="longitud"></span></p>
+        <div class="container mt-4">
+            <div class="row">
+                <!-- Contenedor del mapa en el lado izquierdo -->
+                <div class="col-md-8">
+                    <div id="map" class=""></div>
                 </div>
-                <div>
-                    <form>
-                        <label for="service">Services: </label>
-                        <select id="service" name="service">
-                            {% for service_tuple in services %}
-                                {% for service in service_tuple %}
-                                    <option value="{{ service }}">{{ service }}</option>
+                <!-- Datos y formulario en el lado derecho -->
+                <div class="col-md-4 text-center mt-3">
+                    <form 
+                    id="installationForm" 
+                    method="POST" 
+                    action="">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <!-- Botón de selección -->
+                        <div class="mb-3 col-md-6 mx-auto">
+                            <select class="form-select border border-success" id="order_Select" name="order_costumer">
+                                <option selected>Selecciona la orden...</option>
+                                {% for ins in installations %}
+                                    <option value="{{ ins.cod_order }}" data-order="{{ ins.cod_order }}" data-cedula="{{ ins.dni_costumer }}">{{ ins.cod_order }}</option>
                                 {% endfor %}
-                            {% endfor %}
-                        </select>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-6 mx-auto">
+                            <input type="text" class="form-control border border-success" id="dniCostumer" name="dni_costumer" readonly hidden>
+                        </div>
+                        <div class="container">
+                            <!-- Elemento para mostrar las coordenadas en tiempo real -->
+                            <p style="display: none; align-items: center;">Latitud: <input id="latitud" name="latitud" readonly class="form-control border-0 bg-white" hidden></p>
+                            <p style="display: none; align-items: center;">Longitud: <input id="longitud" name="altitud" readonly class="form-control border-0 bg-white" hidden></p>
+                        </div>
+                        <div>
+                            <div class="mb-3 col-md-6 mx-auto text-center mt-3">
+                                <select class="form-select border border-success" id="service" name="cos_service">
+                                    <option selected>Selecciona el servicio...</option>
+                                    {% for service_tuple in services %}
+                                        {% for service in service_tuple %}
+                                            <option value="{{ service }}">{{ service }}</option>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Observaciones:</label>
+                            <textarea class="form-control" id="comment" name="commentary" rows="6" placeholder="Escribe tu observacion acerca de la instalacion aquí..."></textarea>
+                        </div>
+                        <div class="container mx-auto mt-4">
+                            <button class="btn btn-success py-2" type="submit">Guardar</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="container col-md-1 text-center mt-3">
-        <button class="btn btn-outline-success w-50 py-2" type="submit">Save</button>
-    </div>
-
-    <script>
-        // Inicializar el mapa
-        function initMap() {
-            // Obtener la ubicación actual del usuario
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var centro = { lat: position.coords.latitude, lng: position.coords.longitude };
-
-                // Crear un nuevo mapa en el contenedor con id "map"
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    center: centro,
-                    zoom: 15  // Nivel de zoom inicial
-                });
-
-                // Crear un marcador en la ubicación actual del usuario
-                var marker = new google.maps.Marker({
-                    position: centro,
-                    map: map
-                });
-
-                // Mostrar las coordenadas iniciales
-                mostrarCoordenadas(position.coords);
-
-                // Función para mostrar las coordenadas en las etiquetas
-                function mostrarCoordenadas(coords) {
-                    document.getElementById('latitud').innerHTML = coords.latitude;
-                    document.getElementById('longitud').innerHTML = coords.longitude;
-                }
-
-                // Función para actualizar automáticamente el marcador a la ubicación actual
-                function actualizarUbicacion() {
+        
+        <footer class="py-4" style="background-color: transparent;">
+            <div class="container">
+                <p class="text-center text-body-secondary text-black" style="color: black !important;">&copy; 2024 Empresa, TelcomEp</p>
+            </div>
+        </footer>
+        <script>
+            // Wrap everything in a window load event
+            window.onload = function () {
+                // Inicializar el mapa
+                function initMap() {
+                    // Obtener la ubicación actual del usuario
                     navigator.geolocation.getCurrentPosition(function (position) {
-                        var nuevaUbicacion = { lat: position.coords.latitude, lng: position.coords.longitude };
-                        marker.setPosition(nuevaUbicacion);
+                        var centro = { lat: position.coords.latitude, lng: position.coords.longitude };
+                        // Crear un nuevo mapa en el contenedor con id "map"
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            center: centro,
+                            zoom: 15  // Nivel de zoom inicial
+                        });
+                        // Crear un marcador en la ubicación actual del usuario
+                        var marker = new google.maps.Marker({
+                            position: centro,
+                            map: map
+                        });
+                        // Mostrar las coordenadas iniciales
                         mostrarCoordenadas(position.coords);
+                        // Función para mostrar las coordenadas en las etiquetas
+                        function mostrarCoordenadas(coords) {
+                            document.getElementById('latitud').value = coords.latitude;
+                            document.getElementById('longitud').value = coords.longitude;
+                        }
+                        // Función para actualizar automáticamente el marcador a la ubicación actual
+                        function actualizarUbicacion() {
+                            navigator.geolocation.getCurrentPosition(function (position) {
+                                var nuevaUbicacion = { lat: position.coords.latitude, lng: position.coords.longitude };
+                                marker.setPosition(nuevaUbicacion);
+                                mostrarCoordenadas(position.coords);
+                            });
+                        }
+                        // Actualizar la ubicación automáticamente cada 5 segundos (puedes ajustar el intervalo)
+                        setInterval(actualizarUbicacion, 5000);
+                    }, function (error) {
+                        // Manejar errores de geolocalización
+                        console.error('Error al obtener la ubicación: ', error);
                     });
                 }
+        
+                // Cargar el mapa al cargar la página
+                initMap();
+            };
+        </script>
+        
 
-                // Actualizar la ubicación automáticamente cada 5 segundos (puedes ajustar el intervalo)
-                setInterval(actualizarUbicacion, 5000);
-            }, function (error) {
-                // Manejar errores de geolocalización
-                console.error('Error al obtener la ubicación: ', error);
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#order_Select").change(function () {
+                    var selectedOrder = $(this).val();
+                    var selectedCedula = $(this).find(':selected').data('cedula');
+        
+                    // Actualizar el valor del input con la cedula asociada
+                    $("#dniCostumer").val(selectedCedula);
+                });
             });
-        }
-
-        // Cargar el mapa al cargar la página
-        google.maps.event.addDomListener(window, 'load', initMap);
-    </script>
-
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>

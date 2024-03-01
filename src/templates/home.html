@@ -10,7 +10,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-        <title>TelcomEp</title>
+        <title>TelcomEp - Conectando el futuro, creando comunicaciones inigualables.</title>
     </head>
 
     <body class="vh-100 overflow-hidden">
@@ -21,11 +21,11 @@
               <a class="d-inline-flex link-body-emphasis text-decoration-none">
                 <img class="bi align-self-center" width="70" role="img" aria-label="TelcomEp" src="{{ url_for('static', filename='img/logo.png') }}" />
               </a>
-              <a class="navbar-brand fs-5 mx-3">TelcomEp</a>
+              <a class="navbar-brand fs-5 mx-3 text-black">TelcomEp</a>
               <!--Toggle Btn-->
               <button 
               class="navbar-toggler shadow-none border-0" 
-              type="button" 
+              type="button"
               data-bs-toggle="offcanvas" 
               data-bs-target="#offcanvasNavbar" 
               aria-controls="offcanvasNavbar" 
@@ -62,9 +62,8 @@
                   <div class="d-flex flex-column flex-lg-row 
                   justify-content-center
                   align-items-center gap-3">
-                    <a href="{{ url_for('login') }}" class="text-white text-decoration-none px-3 py-1 rounded-4">Login</a>
-                    <a href="{{ url_for('register') }}" class="text-white text-decoration-none px-3 py-1 rounded-4" 
-                    style="background-color: #2e8b57">Sign Up</a>
+                    <a href="{{ url_for('login') }}" class="text-black text-decoration-none px-3 py-1 rounded-4">Iniciar Sesión</a>
+                    <a href="{{ url_for('register') }}" class="text-white text-decoration-none px-3 py-1 rounded-4" style="background-color: #2e8b57">Registrarse</a>
                   </div>
                 </div>
               </div>
@@ -72,11 +71,11 @@
           </nav>
           <footer class="fixed-bottom py-3" style="background-color: transparent;">
             <div class="container">
-                <p class="text-center text-body-secondary text-white" style="color: white !important;">&copy; 2024 Company, TelcomEp</p>
+                <p class="text-center text-body-secondary text-black" style="color: black !important;">&copy; 2024 Empresa, TelcomEp</p>
             </div>
           </footer>
           <main class="container">
-            <section class="w-100 vh-100 d-flex flex-column justify-content-center align-items-center text-white fs-1">
+            <section class="w-100 vh-100 d-flex flex-column justify-content-center align-items-center text-center fs-1">
                 <h1 class="animated-text animate__animated animate__bounce" style="font-size: 1em">
                     Conéctate al mundo con la mejor velocidad y calidad de internet
                 </h1>
@@ -84,6 +83,6 @@
                     No te quedes atrás en la era digital
                 </h1>
             </section>
-        </main> 
+        </main>        
     </body>
 </html>
